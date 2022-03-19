@@ -50,7 +50,7 @@ def create():
         text = text.strip()
         #print(text)
 
-        return render_template('create.html', value = text)
+        return render_template('create.html', value="Start creating!")
     return render_template('create.html')
 
 @app.route("/image")
@@ -58,7 +58,7 @@ def image():
     print("DREAM RECEIVED")
     music_name= "static/yoga_wait.mp3"
     print(text)
-    p1 = multiprocessing.Process(target= main, args=(text, [300, 300], 10, 10))
+    p1 = multiprocessing.Process(target= main, args=(text, [300, 300], 30, 10))
     p2 = multiprocessing.Process(target= playsound, args=(music_name,))
 
     p1.start()
@@ -67,13 +67,14 @@ def image():
     p1.join()
     if p1.is_alive() == False:
         p2.terminate()
-    return render_template("create.html")
+    return render_template("create.html", value="You can now see your result!")
     
 @app.route("/final")
 def final():
+    print(text)
     x = text.strip().lower().split( )
     name = x[0] + "_" + x[1] + "_" + x[2]
-    for files in os.listdir('static/'):
+    for files in os.listdir('static'):
         files = files.split('.')[0]
         if files.startswith(name):
             pic_name = files + '.jpg'
@@ -85,4 +86,4 @@ def final():
 
 
 if __name__== "__main__":
-    app.run(debug=True)
+    app.run(debug=False)

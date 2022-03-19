@@ -61,6 +61,6 @@ def sound_text_Eng():
 # print(sound_text("Portuguese-PT"))
 #MyText=record_audio()
 
-print(sound_text_Eng())
+#print(sound_text_Eng())
 
 #COLOCAR O OUTPUT COMO DREAM

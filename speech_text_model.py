@@ -2,27 +2,27 @@ import librosa
 import torch
 from transformers import Wav2Vec2ForCTC, Wav2Vec2Tokenizer
 
-#load tokenizer and pre-trained model
-tokenizer = Wav2Vec2Tokenizer.from_pretrained("facebook/wav2vec2-base-960h")
-model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-base-960h")
+# #load tokenizer and pre-trained model
+# tokenizer = Wav2Vec2Tokenizer.from_pretrained("facebook/wav2vec2-base-960h")
+# model = Wav2Vec2ForCTC.from_pretrained("facebook/wav2vec2-base-960h")
 
-#load audio file from folder of choice
-file_path = "/Users/barbara/Downloads/33712a11-4888-41f1-beed-96489bb6380d.wav"
+# #load audio file from folder of choice
+# file_path = "/Users/barbara/Downloads/33712a11-4888-41f1-beed-96489bb6380d.wav"
 
-speech, rate = librosa.load(file_path,sr=16000)
+# speech, rate = librosa.load(file_path,sr=16000)
 
-input_values = tokenizer(speech, return_tensors = 'pt').input_values
+# input_values = tokenizer(speech, return_tensors = 'pt').input_values
 
-#Store logits (non-normalized predictions)
-logits = model(input_values).logits
+# #Store logits (non-normalized predictions)
+# logits = model(input_values).logits
 
-#Store predicted id's
-predicted_ids = torch.argmax(logits, dim =-1)
+# #Store predicted id's
+# predicted_ids = torch.argmax(logits, dim =-1)
 
-#decode the audio to generate text
-transcript = tokenizer.decode(predicted_ids[0])
+# #decode the audio to generate text
+# transcript = tokenizer.decode(predicted_ids[0])
 
-print(transcript.lower())
+# print(transcript.lower())
 
 
 # from transformers import AutoProcessor, AutoModelForCTC
